@@ -23,4 +23,14 @@ public class Solution {
         assert 0 < noProc && noProc < nbProcesseurs : "noProc non reconnu";
         solution.get(noProc).addAll(e);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < solution.size(); i++) {
+            res.append(solution.get(i));
+            res.append("\n");
+        }
+        return res.toString();
+    }
 }
