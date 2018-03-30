@@ -1,25 +1,30 @@
 package metaheuristique;
 
+import model.Solution;
+
 import java.util.ArrayList;
 
 public class Tabou {
 
     private ArrayList tabou;
-    private int[][] solutionInitiale;
+    private Solution solutionInitiale;
     private int meilleurMouv;
 
-    public Tabou(int[][] tab, int nbProcesseurs) {
+    public Tabou(int[] tab, int nbProcesseurs) {
         tabou = new ArrayList();
-        solutionInitiale = new int[nbProcesseurs][tab.length];
-        for (int i = 0; i < solutionInitiale[0].length/2; i++) {
-            solutionInitiale[0][i] = tab[i][1];
-            solutionInitiale[1][tab.length / 2 + i] = tab[tab.length / 2 + i][1];
+        solutionInitiale = new Solution(nbProcesseurs);
+
+        for (int i = 0; i < nbProcesseurs; i++) {
+            ArrayList<Integer> a = new ArrayList<>();
+            for (int j = 0; j < tab.length / nbProcesseurs; j++) {
+                a.add(tab[j + i * tab.length / nbProcesseurs]);
+            }
+            if (tab.length % 2 == 1 && i == nbProcesseurs - 1) {
+                a.add(tab[tab.length-1]);
+            }
+            solutionInitiale.setSolProc(i, a);
         }
 
-        for (int i = 0; i < solutionInitiale.length; i++) {
-            for (int j = 0; j < solutionInitiale[0].length; j++) {
-                System.out.println(solutionInitiale[i][j]);
-            }
-        }
+        System.out.println(solutionInitiale);
     }
 }
