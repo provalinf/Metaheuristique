@@ -2,8 +2,6 @@ package src.test;
 
 import src.metaheuristique.RecuitSimule;
 import src.metaheuristique.Tabou;
-
-import javax.swing.text.TabableView;
 import java.util.ArrayList;
 
 public class Test {
