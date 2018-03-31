@@ -24,5 +24,6 @@ public class Tabou {
             }
             solutionInitiale.setSolProc(i, a);
         }
+        System.out.println(solutionInitiale);
     }
 }

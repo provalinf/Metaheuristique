@@ -57,9 +57,10 @@ public class Solution {
     public String toString() {
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < solution.size(); i++) {
-            res.append(solution.get(i));
+            res.append("Processeur "+i+": "+solution.get(i));
             res.append("\n");
         }
+        res.append("Temps max : " + getCMax());
         return res.toString();
     }
 }
