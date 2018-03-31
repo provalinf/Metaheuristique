@@ -1,7 +1,6 @@
 package test;
 
 import metaheuristique.Tabou;
-import src.metaheuristique.RecuitSimule;
 
 import java.util.ArrayList;
 
