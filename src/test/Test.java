@@ -9,8 +9,8 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        int[] tab = {5, 4, 3, 6, 5, 7, 5};
+        int[] tab = {5, 4, 3, 6, 12, 7};
         //RecuitSimule rs = new RecuitSimule(2);
-        Tabou t = new Tabou(tab, 2);
+        Tabou t = new Tabou(tab, 3);
     }
 }

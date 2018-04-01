@@ -14,6 +14,15 @@ public class Solution {
         }
     }
 
+    public Solution(Solution solutionEnCours) {
+        nbProcesseurs = solutionEnCours.nbProcesseurs;
+        solution = new ArrayList<ArrayList>();
+        for (int i = 0; i < nbProcesseurs; i++) {
+            solution.add(new ArrayList<Integer>(solutionEnCours.getSolProc(i)));
+        }
+
+    }
+
     public ArrayList getSolProc(int noProc) {
         assert 0 < noProc && noProc < nbProcesseurs : "noProc non reconnu";
         return solution.get(noProc);
@@ -61,6 +70,19 @@ public class Solution {
             res.append("\n");
         }
         res.append("Temps max : " + getCMax());
-        return res.toString();
+        return res.toString()+"\n\n";
     }
+
+    public ArrayList<Integer> getProc(int proc){
+        return solution.get(proc);
+    }
+
+    public void removeTask(int proc, int tache) {
+        solution.get(proc).remove(tache);
+    }
+
+    public void copy(Solution solutionEnCours) {
+
+    }
+
 }
