@@ -28,4 +28,12 @@ public class Processeur {
 	public void removeTache(Tache t){
 		taches_affectees.remove(t);
 	}
+
+	public ArrayList<Tache> getTaches_affectees() {
+		return taches_affectees;
+	}
+
+	public void setTaches_affectees(ArrayList<Tache> taches_affectees) {
+		this.taches_affectees = taches_affectees;
+	}
 }
