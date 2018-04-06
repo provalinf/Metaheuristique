@@ -14,8 +14,10 @@ public class Tabou {
     private int nbProcesseurs;
     private int[] tab;
     private int tailleListeTabou;
+    private int iteration;
 
     public Tabou(int[] tab, int nbProcesseurs) {
+        iteration = 0;
         this.nbProcesseurs = nbProcesseurs;
         this.tab = tab;
         Scanner sc = new Scanner(System.in);
@@ -31,6 +33,8 @@ public class Tabou {
 
         //Calcule de la meilleure solution
         run();
+        System.out.println(meilleureSolution);
+        System.out.println("Nombre d'iterations : "+iteration);
     }
 
     private void run() {
@@ -44,7 +48,7 @@ public class Tabou {
                     solutionEnCours = voisin.get(i);
                     meilleureSolution = solutionEnCours;
                 }
-                System.out.println(meilleureSolution);
+                iteration ++;
             }
         }
     }

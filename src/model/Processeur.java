@@ -20,4 +20,12 @@ public class Processeur {
 			tmp += tache.getDuree_ope();
 		return tmp;
 	}
+
+	public void addTache(Tache t) {
+		taches_affectees.add(t);
+	}
+
+	public void removeTache(Tache t){
+		taches_affectees.remove(t);
+	}
 }
