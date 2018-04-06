@@ -18,7 +18,6 @@ public class RecuitSimule {
 	private static final float coeff = 0.9f;
 	public static final Random RANDOM = new Random();
 
-
 	public RecuitSimule(float temperature, Solution solInit, int nbProc) {
 		this.temperature = temperature;
 		etat_actu = solInit;
@@ -29,7 +28,6 @@ public class RecuitSimule {
 		do {
 			iterations++;
 			int nb_dep = 0;
-
 			Solution voisin = getVoisin();
 			if (critMetropolis(voisin.getCMax() - etat_actu.getCMax(), temperature)) {
 				etat_actu = voisin;
@@ -56,7 +54,7 @@ public class RecuitSimule {
 		System.out.println("Pourcentage d'acceptation : " + pourc_accept);
 	}
 
-	public boolean critMetropolis(int delta, float temperature) {
+	private boolean critMetropolis(int delta, float temperature) {
 		if (delta < 0) return true;
 		return ThreadLocalRandom.current().nextFloat() < Math.exp(-delta / temperature);
 	}

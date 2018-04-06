@@ -12,18 +12,21 @@ public class Test {
 
 	private static final Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 		int[] durees = new int[]{5, 4, 3, 6, 12, 7};
 		ArrayList<Tache> taches = new ArrayList<>(durees.length);
 		for (int id = 0; id < durees.length; id++)
 			taches.add(new Tache(id, durees[id]));
 		Solution solu = new Solution(2, taches);
-		System.out.println("Saisissez la valeur de température initiale ?");
-		float temperature = sc.nextFloat();
-        RecuitSimule rs = new RecuitSimule(temperature, solu, 2);
-        rs.start();
-        rs.printResult();
 
-        Tabou t = new Tabou(solu, 3);
-    }
+		System.out.println("Saisissez la valeur de température initiale pour le recuit simulé");
+		float temperature = sc.nextFloat();
+		RecuitSimule rs = new RecuitSimule(temperature, solu, 2);
+		rs.start();
+		rs.printResult();
+
+		System.out.println("Saisissez la taille de la liste tabou");
+		int taille = Integer.parseInt(sc.nextLine());
+		Tabou t = new Tabou(solu, taille, 3);
+	}
 }

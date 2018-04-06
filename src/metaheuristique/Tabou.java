@@ -16,13 +16,11 @@ public class Tabou {
     private int tailleListeTabou;
     private int iteration;
 
-    public Tabou(int[] tab, int nbProcesseurs) {
+    public Tabou(int[] tab, int tailleListeTabou, int nbProcesseurs) {
         iteration = 0;
         this.nbProcesseurs = nbProcesseurs;
         this.tab = tab;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez saisir la taille de la liste tabou :");
-        tailleListeTabou = Integer.parseInt(sc.nextLine());
+		this.tailleListeTabou = tailleListeTabou;
         tabou = new ArrayList<Solution>(tailleListeTabou);
 
         //Calcule de la solution initiale
