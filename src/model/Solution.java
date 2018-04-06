@@ -3,38 +3,38 @@ package model;
 import java.util.ArrayList;
 
 public class Solution {
-    private ArrayList<Tache> listeTaches;
+    private ArrayList<Processeur> listeProcesseurs;
     private int nbProcesseurs;
 
-    public Solution(int nbProcesseurs, ArrayList<Tache> taches) {
+    public Solution(int nbProcesseurs) {
         this.nbProcesseurs = nbProcesseurs;
-        listeTaches = taches;
+        listeProcesseurs = new ArrayList<Processeur>();
     }
 
     public Solution(Solution solutionEnCours) {
         nbProcesseurs = solutionEnCours.nbProcesseurs;
-        listeTaches = new ArrayList<Tache>();
+        listeProcesseurs = new ArrayList<Processeur>();
         for (int i = 0; i < nbProcesseurs; i++) {
-            listeTaches.add(new ArrayList<Tache>(solutionEnCours.getSolProc(i)));
+            listeProcesseurs.get(i).setTaches_affectees(new ArrayList<Tache>(solutionEnCours.getSolProc(i)));
         }
 
     }
 
     public ArrayList getSolProc(int noProc) {
         assert 0 < noProc && noProc < nbProcesseurs : "noProc non reconnu";
-        return listeTaches.get(noProc);
+        return listeProcesseurs.get(noProc).getTaches_affectees();
     }
 
     public void setSolProc(int noProc, ArrayList e){
         assert 0 < noProc && noProc < nbProcesseurs : "noProc non reconnu";
-        listeTaches.get(noProc).addAll(e);
+        listeProcesseurs.get(noProc).getTaches_affectees().addAll(e);
     }
 
 
-    private int sommeListe(ArrayList<Integer> a){
+    private int sommeListe(ArrayList<Tache> a){
         int res = 0;
         for (int i = 0; i < a.size(); i++) {
-            res += a.get(i);
+            res += a.get(i).getDuree_ope();
         }
         return res;
     }
@@ -43,7 +43,7 @@ public class Solution {
         int res = 0;
         ArrayList<Integer> maxList = new ArrayList<>(nbProcesseurs);
         for (int i = 0; i < nbProcesseurs; i++) {
-            maxList.add(i, sommeListe(listeTaches.get(i)));
+            maxList.add(i, sommeListe(listeProcesseurs.get(i).getTaches_affectees()));
         }
         res = getMax(maxList);
         return res;
@@ -63,16 +63,15 @@ public class Solution {
 		ArrayList<Solution> solutions = new ArrayList<>();
 		for (int i = 0; i < nbProcesseurs; i++) {
 			for (int j = 0; j < nbProcesseurs; j++) {
-                for (int k = 0; k < getProc(j).size(); k++) {
+                for (int k = 0; k < listeProcesseurs.get(j).getTaches_affectees().size(); k++) {
                     if (i != j) {
-                        Tache tache = getProc(i).get(k);
-                        int tache = getProc(i).get(k);
-                        getProc(j).add(getProc(i).);
-                        getProc(i).remove(tache);
+                        Tache tache = listeProcesseurs.get(i).getTaches_affectees().get(k);
+                        listeProcesseurs.get(j).addTache(tache);
+                        listeProcesseurs.get(i).removeTache(tache);
                         Solution s = new Solution(this);
                         solutions.add(s);
-                        getProc(i).add(tache);
-                        getProc(j).remove(getProc(j).size() - 1);
+                        listeProcesseurs.get(i).addTache(tache);
+                        listeProcesseurs.get(j).removeTache(tache);
                     }
                 }
 			}
@@ -83,20 +82,12 @@ public class Solution {
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i < listeTaches.size(); i++) {
-            res.append("Processeur "+i+": "+ listeTaches.get(i));
+        for (int i = 0; i < listeProcesseurs.size(); i++) {
+            res.append("Processeur "+i+": "+ listeProcesseurs.get(i));
             res.append("\n");
         }
         res.append("Temps max : " + getCMax());
         return res.toString()+"\n\n";
-    }
-
-    public ArrayList<Tache> getProc(int proc){
-        return listeTaches.get(proc);
-    }
-
-    public void removeTask(int proc, int tache) {
-        listeTaches.get(proc).remove(tache);
     }
 
     public void copy(Solution solutionEnCours) {
