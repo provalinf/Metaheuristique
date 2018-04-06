@@ -62,6 +62,26 @@ public class Solution {
         return max;
     }
 
+	public ArrayList<Solution> getVoisin() {
+		ArrayList<Solution> solutions = new ArrayList<>();
+		for (int i = 0; i < nbProcesseurs; i++) {
+			for (int j = 0; j < nbProcesseurs; j++) {
+				for (int k = 0; k < getSolProc(i).size(); k++) {
+					if (i != j) {
+						int tache = getProc(i).get(k);
+						getProc(j).add(tache);
+						getProc(i).remove(k);
+						Solution s = new Solution(this);
+						solutions.add(s);
+						getProc(i).add(tache);
+						getProc(j).remove(getProc(j).size() - 1);
+					}
+				}
+			}
+		}
+		return solutions;
+	}
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();

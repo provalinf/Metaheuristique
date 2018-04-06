@@ -1,7 +1,9 @@
 package metaheuristique;
 
 import model.Etat;
+import model.Solution;
 
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -10,14 +12,14 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RecuitSimule {
 	private float temperature;
 	private static final float temperatureFinale = 0.1f;
-	private Etat etat_actu;
+	private Solution etat_actu;
 	private int taux_accept;
 	private static final float coeff = 0.9f;
 
 
 	public RecuitSimule(float temperature, int nbProc) {
 		this.temperature = temperature;
-		etat_actu = new Etat(nbProc);
+		etat_actu = new Solution(nbProc);
 
 	}
 
@@ -26,7 +28,8 @@ public class RecuitSimule {
 		do {
 			i++;
 			int nb_dep = 0;
-			Etat voisin = etat_actu.getVoisin();
+			ArrayList<Solution> voisins = etat_actu.getVoisin();
+
 			if (critMetropolis(voisin.getTemp() - etat_actu.getTemp(), temperature)) {
 				etat_actu = voisin;
 				nb_dep++;

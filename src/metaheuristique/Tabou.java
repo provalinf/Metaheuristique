@@ -36,7 +36,7 @@ public class Tabou {
     private void run() {
         for (int o = 0; o < 5; o++) {
 
-            ArrayList<Solution> voisin = getVoisin();
+            ArrayList<Solution> voisin = solutionEnCours.getVoisin();
             for (int i = 0; i < voisin.size(); i++) {
                 int duree = voisin.get(i).getCMax();
                 if (duree < cMax && !tabou.contains(voisin.get(i))) {
@@ -48,27 +48,6 @@ public class Tabou {
             }
         }
     }
-
-    private ArrayList<Solution> getVoisin() {
-        ArrayList<Solution> solutions = new ArrayList<>();
-        for (int i = 0; i < nbProcesseurs; i++) {
-            for (int j = 0; j < nbProcesseurs; j++) {
-                for (int k = 0; k < solutionEnCours.getSolProc(i).size(); k++) {
-                    if (i != j) {
-                        int tache = solutionEnCours.getProc(i).get(k);
-                        solutionEnCours.getProc(j).add(tache);
-                        solutionEnCours.getProc(i).remove(k);
-                        Solution s = new Solution(solutionEnCours);
-                        solutions.add(s);
-                        solutionEnCours.getProc(i).add(tache);
-                        solutionEnCours.getProc(j).remove(solutionEnCours.getProc(j).size() - 1);
-                    }
-                }
-            }
-        }
-        return solutions;
-    }
-
 
     private void solInit() {
         solutionEnCours = new Solution(nbProcesseurs);
