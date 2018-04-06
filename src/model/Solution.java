@@ -15,7 +15,7 @@ public class Solution {
         nbProcesseurs = solutionEnCours.nbProcesseurs;
         listeTaches = new ArrayList<Tache>();
         for (int i = 0; i < nbProcesseurs; i++) {
-            listeTaches.add(new ArrayList<Integer>(solutionEnCours.getSolProc(i)));
+            listeTaches.add(new ArrayList<Tache>(solutionEnCours.getSolProc(i)));
         }
 
     }

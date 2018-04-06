@@ -20,7 +20,7 @@ public class Test {
 		Solution solu = new Solution(2, taches);
 		System.out.println("Saisissez la valeur de température initiale ?");
 		float temperature = sc.nextFloat();
-        RecuitSimule rs = new RecuitSimule(temperature, 2);
+        RecuitSimule rs = new RecuitSimule(temperature, solu, 2);
         Tabou t = new Tabou(solu, 3);
     }
 }

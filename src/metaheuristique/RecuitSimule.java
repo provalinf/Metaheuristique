@@ -18,10 +18,9 @@ public class RecuitSimule {
 	public static final Random RANDOM = new Random();
 
 
-	public RecuitSimule(float temperature, int nbProc) {
+	public RecuitSimule(float temperature, Solution solInit,int nbProc) {
 		this.temperature = temperature;
-		etat_actu = new Solution(nbProc);
-
+		etat_actu = solInit;
 	}
 
 	public void recuitSimule() {
@@ -36,7 +35,7 @@ public class RecuitSimule {
 				if (voisins.get(j).getCMax() > tmpMax) idVoisin = j;
 			}
 			Solution voisin = voisins.get(idVoisin);
-			if (critMetropolis(voisin.getTemp() - etat_actu.getTemp(), temperature)) {
+			if (critMetropolis(voisin.getCMax() - etat_actu.getCMax(), temperature)) {
 				etat_actu = voisin;
 				nb_dep++;
 			}
