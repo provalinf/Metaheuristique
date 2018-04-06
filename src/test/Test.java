@@ -21,6 +21,9 @@ public class Test {
 		System.out.println("Saisissez la valeur de température initiale ?");
 		float temperature = sc.nextFloat();
         RecuitSimule rs = new RecuitSimule(temperature, solu, 2);
+        rs.start();
+        rs.printResult();
+
         Tabou t = new Tabou(solu, 3);
     }
 }
