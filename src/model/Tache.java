@@ -4,12 +4,14 @@ package model;
  * Created by Valentin.
  */
 public class Tache {
+	private int id;
 	private int temperature;
-	private float temps;
+	private float duree_ope;
 
-	public Tache(int temperature, float temps) {
+	public Tache(int id, int temperature, float duree_ope) {
+		this.id = id;
 		this.temperature = temperature;
-		this.temps = temps;
+		this.duree_ope = duree_ope;
 	}
 
 	public int getTemperature() {
@@ -20,11 +22,11 @@ public class Tache {
 		this.temperature = temperature;
 	}
 
-	public float getTemps() {
-		return temps;
+	public float getDuree_ope() {
+		return duree_ope;
 	}
 
-	public void setTemps(float temps) {
-		this.temps = temps;
+	public void setDuree_ope(float duree_ope) {
+		this.duree_ope = duree_ope;
 	}
 }
