@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Tabou {
 
-    private ArrayList tabou;
+    private ArrayList<Solution> tabou;
     private Solution solutionEnCours;
     private Solution meilleureSolution;
     private int cMax;
@@ -44,8 +44,8 @@ public class Tabou {
                     solutionEnCours = voisin.get(i);
                     meilleureSolution = solutionEnCours;
                 }
+                System.out.println(meilleureSolution);
             }
-            System.out.println(meilleureSolution);
         }
     }
 
