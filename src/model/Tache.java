@@ -8,7 +8,7 @@ public class Tache {
 	private int temperature;
 	private float duree_ope;
 
-	public Tache(int id, int temperature, float duree_ope) {
+	public Tache(int id, float duree_ope) {
 		this.id = id;
 		this.temperature = temperature;
 		this.duree_ope = duree_ope;

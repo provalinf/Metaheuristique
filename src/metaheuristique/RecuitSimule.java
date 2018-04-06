@@ -30,10 +30,10 @@ public class RecuitSimule {
 			int nb_dep = 0;
 			ArrayList<Solution> voisins = etat_actu.getVoisin();
 
-			if (critMetropolis(voisin.getTemp() - etat_actu.getTemp(), temperature)) {
+/*			if (critMetropolis(voisin.getTemp() - etat_actu.getTemp(), temperature)) {
 				etat_actu = voisin;
 				nb_dep++;
-			}
+			}*/
 			taux_accept = i / nb_dep;
 			temperature *= coeff;
 		} while (temperature < temperatureFinale);

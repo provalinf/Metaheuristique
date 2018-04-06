@@ -3,22 +3,22 @@ package model;
 import java.util.ArrayList;
 
 public class Solution {
-    private ArrayList<ArrayList> solution;
+    private ArrayList<Tache> solution;
     private int nbProcesseurs;
 
     public Solution(int nbProcesseurs) {
         this.nbProcesseurs = nbProcesseurs;
-        solution = new ArrayList<ArrayList>();
+        solution = new ArrayList<Tache>();
         for (int i = 0; i < nbProcesseurs; i++) {
-            solution.add(new ArrayList<Integer>());
+            solution.add(new ArrayList<Tache>());
         }
     }
 
     public Solution(Solution solutionEnCours) {
         nbProcesseurs = solutionEnCours.nbProcesseurs;
-        solution = new ArrayList<ArrayList>();
+        solution = new ArrayList<Tache>();
         for (int i = 0; i < nbProcesseurs; i++) {
-            solution.add(new ArrayList<Integer>(solutionEnCours.getSolProc(i)));
+            solution.add(new ArrayList<Tache>(solutionEnCours.getSolProc(i)));
         }
 
     }
@@ -66,17 +66,18 @@ public class Solution {
 		ArrayList<Solution> solutions = new ArrayList<>();
 		for (int i = 0; i < nbProcesseurs; i++) {
 			for (int j = 0; j < nbProcesseurs; j++) {
-				for (int k = 0; k < getSolProc(i).size(); k++) {
-					if (i != j) {
-						int tache = getProc(i).get(k);
-						getProc(j).add(tache);
-						getProc(i).remove(k);
-						Solution s = new Solution(this);
-						solutions.add(s);
-						getProc(i).add(tache);
-						getProc(j).remove(getProc(j).size() - 1);
-					}
-				}
+                for (int k = 0; k < getProc(j).size(); k++) {
+                    if (i != j) {
+                        Tache tache = getProc(i).get(k);
+                        int tache = getProc(i).get(k);
+                        getProc(j).add(getProc(i).);
+                        getProc(i).remove(tache);
+                        Solution s = new Solution(this);
+                        solutions.add(s);
+                        getProc(i).add(tache);
+                        getProc(j).remove(getProc(j).size() - 1);
+                    }
+                }
 			}
 		}
 		return solutions;
@@ -93,7 +94,7 @@ public class Solution {
         return res.toString()+"\n\n";
     }
 
-    public ArrayList<Integer> getProc(int proc){
+    public ArrayList<Tache> getProc(int proc){
         return solution.get(proc);
     }
 
