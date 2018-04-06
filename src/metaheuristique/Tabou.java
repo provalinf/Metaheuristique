@@ -41,6 +41,7 @@ public class Tabou {
         for (int o = 0; o < 5; o++) {
 
             ArrayList<Solution> voisin = solutionEnCours.getVoisin();
+            System.out.println(voisin);
             for (int i = 0; i < voisin.size(); i++) {
                 int duree = voisin.get(i).getCMax();
                 if (duree < cMax && !tabou.contains(voisin.get(i))) {
