@@ -9,7 +9,7 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        int[] tab = {5, 4, 3, 6, 12, 7};
+        int[] tab = {5, 4, 3, 12, 7, 8, 6, 8};
         //RecuitSimule rs = new RecuitSimule(2);
         Tabou t = new Tabou(tab, 3);
     }
