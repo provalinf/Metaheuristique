@@ -8,15 +8,12 @@ public class Solution {
 
 	public Solution(int nbProcesseurs) {
 		this.nbProcesseurs = nbProcesseurs;
-		listeProcesseurs = new ArrayList<Processeur>();
+		listeProcesseurs = new ArrayList<Processeur>(nbProcesseurs);
 	}
 
 	public Solution(Solution solutionEnCours) {
+		listeProcesseurs = (ArrayList<Processeur>) solutionEnCours.listeProcesseurs.clone();
 		nbProcesseurs = solutionEnCours.nbProcesseurs;
-		listeProcesseurs = new ArrayList<Processeur>();
-		for (int i = 0; i < nbProcesseurs; i++) {
-			listeProcesseurs.get(i).setTaches_affectees(new ArrayList<Tache>(solutionEnCours.getSolProc(i)));
-		}
 
 	}
 
@@ -32,13 +29,14 @@ public class Solution {
 
 	public void soladdTaches(int[] durees) {
 		for (int i = 0; i < nbProcesseurs; i++) {
-			ArrayList<Integer> a = new ArrayList<>();
+			ArrayList<Tache> a = new ArrayList<>();
 			for (int j = 0; j < durees.length / nbProcesseurs; j++) {
-				a.add(durees[j + i * durees.length / nbProcesseurs]);
+				a.add(new Tache(j,durees[j + i * durees.length / nbProcesseurs]));
 			}
 			if (durees.length % 2 == 1 && i == nbProcesseurs - 1) {
-				a.add(durees[durees.length - 1]);
+				a.add(new Tache(i, durees[durees.length - 1]));
 			}
+			listeProcesseurs.add(new Processeur(a, i));
 			setSolProc(i, a);
 		}
 	}

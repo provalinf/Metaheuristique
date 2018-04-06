@@ -36,4 +36,12 @@ public class Processeur {
 	public void setTaches_affectees(ArrayList<Tache> taches_affectees) {
 		this.taches_affectees = taches_affectees;
 	}
+
+	@Override
+	public String toString() {
+		return "Processeur{" +
+				"taches_affectees=" + taches_affectees +
+				", id=" + id +
+				'}';
+	}
 }

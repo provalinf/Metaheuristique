@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class RecuitSimule {
 	private float temperature;
-	private static final float temperatureFinale = 0.1f;
+	private static final float temperatureFinale = 0.9f;
 	private Solution etat_actu;
 	private int pourc_accept;
 	private int iterations;

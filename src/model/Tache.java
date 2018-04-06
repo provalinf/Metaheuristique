@@ -29,4 +29,12 @@ public class Tache {
 	public void setDuree_ope(float duree_ope) {
 		this.duree_ope = duree_ope;
 	}
+
+	@Override
+	public String toString() {
+		return "Tache{" +
+				"id=" + id +
+				", duree_ope=" + duree_ope +
+				'}';
+	}
 }
