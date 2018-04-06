@@ -1,9 +1,9 @@
 package metaheuristique;
 
-import model.Etat;
 import model.Solution;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -15,6 +15,7 @@ public class RecuitSimule {
 	private Solution etat_actu;
 	private int taux_accept;
 	private static final float coeff = 0.9f;
+	public static final Random RANDOM = new Random();
 
 
 	public RecuitSimule(float temperature, int nbProc) {
@@ -29,7 +30,12 @@ public class RecuitSimule {
 			i++;
 			int nb_dep = 0;
 			ArrayList<Solution> voisins = etat_actu.getVoisin();
-
+			int idVoisin = 0;
+			int tmpMax = voisins.get(idVoisin).getCMax();
+			for (int j = 0; j < voisins.size(); j++) {
+				if (voisins.get(j).getCMax() > tmpMax) idVoisin = j;
+			}
+			Solution voisin = voisins.get(idVoisin);
 			if (critMetropolis(voisin.getTemp() - etat_actu.getTemp(), temperature)) {
 				etat_actu = voisin;
 				nb_dep++;

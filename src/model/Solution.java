@@ -3,34 +3,31 @@ package model;
 import java.util.ArrayList;
 
 public class Solution {
-    private ArrayList<ArrayList> solution;
+    private ArrayList<Tache> listeTaches;
     private int nbProcesseurs;
 
-    public Solution(int nbProcesseurs) {
+    public Solution(int nbProcesseurs, ArrayList<Tache> taches) {
         this.nbProcesseurs = nbProcesseurs;
-        solution = new ArrayList<ArrayList>();
-        for (int i = 0; i < nbProcesseurs; i++) {
-            solution.add(new ArrayList<Integer>());
-        }
+        listeTaches = taches;
     }
 
     public Solution(Solution solutionEnCours) {
         nbProcesseurs = solutionEnCours.nbProcesseurs;
-        solution = new ArrayList<ArrayList>();
+        listeTaches = new ArrayList<ArrayList>();
         for (int i = 0; i < nbProcesseurs; i++) {
-            solution.add(new ArrayList<Integer>(solutionEnCours.getSolProc(i)));
+            listeTaches.add(new ArrayList<Integer>(solutionEnCours.getSolProc(i)));
         }
 
     }
 
     public ArrayList getSolProc(int noProc) {
         assert 0 < noProc && noProc < nbProcesseurs : "noProc non reconnu";
-        return solution.get(noProc);
+        return listeTaches.get(noProc);
     }
 
     public void setSolProc(int noProc, ArrayList e){
         assert 0 < noProc && noProc < nbProcesseurs : "noProc non reconnu";
-        solution.get(noProc).addAll(e);
+        listeTaches.get(noProc).addAll(e);
     }
 
 
@@ -46,7 +43,7 @@ public class Solution {
         int res = 0;
         ArrayList<Integer> maxList = new ArrayList<>(nbProcesseurs);
         for (int i = 0; i < nbProcesseurs; i++) {
-            maxList.add(i, sommeListe(solution.get(i)));
+            maxList.add(i, sommeListe(listeTaches.get(i)));
         }
         res = getMax(maxList);
         return res;
@@ -85,8 +82,8 @@ public class Solution {
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i < solution.size(); i++) {
-            res.append("Processeur "+i+": "+solution.get(i));
+        for (int i = 0; i < listeTaches.size(); i++) {
+            res.append("Processeur "+i+": "+ listeTaches.get(i));
             res.append("\n");
         }
         res.append("Temps max : " + getCMax());
@@ -94,11 +91,11 @@ public class Solution {
     }
 
     public ArrayList<Integer> getProc(int proc){
-        return solution.get(proc);
+        return listeTaches.get(proc);
     }
 
     public void removeTask(int proc, int tache) {
-        solution.get(proc).remove(tache);
+        listeTaches.get(proc).remove(tache);
     }
 
     public void copy(Solution solutionEnCours) {
