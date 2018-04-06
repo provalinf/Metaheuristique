@@ -14,10 +14,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		int[] durees = new int[]{5, 4, 3, 6, 12, 7};
-		ArrayList<Tache> taches = new ArrayList<>(durees.length);
-		for (int id = 0; id < durees.length; id++)
-			taches.add(new Tache(id, durees[id]));
-		Solution solu = new Solution(2, taches);
+		Solution solu = new Solution(2);
+		solu.soladdTaches(durees);
 
 		System.out.println("Saisissez la valeur de température initiale pour le recuit simulé");
 		float temperature = sc.nextFloat();

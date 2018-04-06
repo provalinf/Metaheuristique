@@ -8,26 +8,24 @@ import java.util.Scanner;
 public class Tabou {
 
     private ArrayList<Solution> tabou;
-    private Solution solutionEnCours;
+    private Solution solu;
     private Solution meilleureSolution;
     private int cMax;
     private int nbProcesseurs;
-    private int[] tab;
     private int tailleListeTabou;
     private int iteration;
 
-    public Tabou(int[] tab, int tailleListeTabou, int nbProcesseurs) {
+    public Tabou(Solution solu, int tailleListeTabou, int nbProcesseurs) {
         iteration = 0;
         this.nbProcesseurs = nbProcesseurs;
-        this.tab = tab;
 		this.tailleListeTabou = tailleListeTabou;
         tabou = new ArrayList<Solution>(tailleListeTabou);
 
         //Calcule de la solution initiale
-        solInit();
-        meilleureSolution = solutionEnCours;
-        cMax = solutionEnCours.getCMax();
-        tabou.add(solutionEnCours);
+		this.solu = solu;
+        meilleureSolution = solu;
+        cMax = solu.getCMax();
+        tabou.add(solu);
 
         //Calcule de la meilleure solution
         run();
@@ -38,31 +36,17 @@ public class Tabou {
     private void run() {
         for (int o = 0; o < 5; o++) {
 
-            ArrayList<Solution> voisin = solutionEnCours.getVoisin();
+            ArrayList<Solution> voisin = solu.getVoisin();
             System.out.println(voisin);
             for (int i = 0; i < voisin.size(); i++) {
                 int duree = voisin.get(i).getCMax();
                 if (duree < cMax && !tabou.contains(voisin.get(i))) {
                     cMax = duree;
-                    solutionEnCours = voisin.get(i);
-                    meilleureSolution = solutionEnCours;
+					solu = voisin.get(i);
+                    meilleureSolution = solu;
                 }
                 iteration ++;
             }
-        }
-    }
-
-    private void solInit() {
-        solutionEnCours = new Solution(nbProcesseurs);
-        for (int i = 0; i < nbProcesseurs; i++) {
-            ArrayList<Integer> a = new ArrayList<>();
-            for (int j = 0; j < tab.length / nbProcesseurs; j++) {
-                a.add(tab[j + i * tab.length / nbProcesseurs]);
-            }
-            if (tab.length % 2 == 1 && i == nbProcesseurs - 1) {
-                a.add(tab[tab.length - 1]);
-            }
-            solutionEnCours.setSolProc(i, a);
         }
     }
 }
